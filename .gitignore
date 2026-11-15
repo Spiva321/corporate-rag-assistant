@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environment
+.venv/
+venv/
+
+# Vector index (rebuild with index_documents.py)
+chroma_corporate_db/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
