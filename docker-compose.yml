@@ -1,0 +1,22 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    ports:
+      # При желании привяжите к Tailscale-IP: "100.x.y.z:3000:8080"
+      - "3000:8080"
+    environment:
+      WEBUI_NAME: "STEREO AI Assistant"
+      # Наш Flask на хосте; контейнер видит хост через host.docker.internal
+      OPENAI_API_BASE_URL: "http://host.docker.internal:5000/v1"
+      OPENAI_API_KEY: "dummy"
+      # Обычные модели Ollama тоже остаются доступными в интерфейсе
+      OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - open-webui-data:/app/backend/data
+
+volumes:
+  open-webui-data:

@@ -5,7 +5,7 @@ from app.rag.chunking import split_documents
 
 
 def test_split_documents():
-    text = "TechNova employee policy. " * 200
+    text = "STEREO AI employee policy. " * 200
 
     documents = [
         Document(
@@ -20,7 +20,7 @@ def test_split_documents():
 
 
 def test_chunk_size():
-    text = "TechNova employee policy. " * 200
+    text = "STEREO AI employee policy. " * 200
 
     documents = [Document(page_content=text)]
 

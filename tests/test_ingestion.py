@@ -9,13 +9,24 @@ def test_load_docx(tmp_path):
     file_path = tmp_path / "test.docx"
 
     doc = Document()
-    doc.add_paragraph("TechNova is a technology company.")
+    doc.add_paragraph("STEREO AI is a technology company.")
     doc.save(file_path)
 
     documents = load_document(str(file_path))
 
     assert len(documents) > 0
-    assert "TechNova" in documents[0].page_content
+    assert "STEREO AI" in documents[0].page_content
+
+
+def test_load_markdown(tmp_path):
+    file_path = tmp_path / "note.md"
+    file_path.write_text("# Заголовок\n\nТекст заметки.", encoding="utf-8")
+
+    documents = load_document(str(file_path))
+
+    assert len(documents) > 0
+    assert "Заголовок" in documents[0].page_content
+    assert "Текст заметки" in documents[0].page_content
 
 
 def test_unsupported_format(tmp_path):
